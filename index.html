@@ -11,25 +11,48 @@
         <main>
             <div class="cd-card">
                 <h1>Today's Weather</h1>
+                {{if .Forecast.Alerts}}
                 <p>
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus
-convallis lectus non volutpat. Integer a arcu in magna tristique porta. Cras in
-eros massa. <span class="cd-highlight">Aliquam hendrerit augue</span> vitae sollicitudin vestibulum. Praesent et
-tortor sed velit sollicitudin condimentum. Etiam cursus condimentum ante, in
-finibus nulla dapibus ut. Praesent consequat fringilla magna eu fermentum. Ut
-ornare ipsum a felis suscipit dictum. Pellentesque habitant morbi tristique
-senectus et netus et malesuada fames ac turpis egestas. Etiam quis ultrices
-erat.
-
+                <span class="cd-highlight">Weather Alerts</span>
                 </p>
+                <ul>
+{{range .Forecast.Alerts}}
+                <li>{{.Title}}</li>
+{{end}}
+                </ul>
+                {{end}}
+                <h2>Today</h2>
+                <p>
+                {{with $today := index .Forecast.Daily.Data 0}}
+                Today, you can expect that it will be {{.Summary}}
+                You can expect to see a
+                <span class="cd-highlight">High of {{tempToString .TemperatureMax}}
+                around {{dateToString .TemperatureMaxTime}}</span>
+                and a
+                <span class="cd-highlight">Low of {{tempToString .TemperatureMin}}
+                around {{dateToString .TemperatureMinTime}}.</span>
+                {{end}}
+                </p>
+
+                <h2>Next 24 Hours</h2>
+                <p><span class="cd-highlight">{{.Forecast.Hourly.Summary}}</span></p>
+                <table>
+{{range $forecast := importantWeather .Forecast.Hourly.Data}}
+                <tr>
+                    <td>{{dateToString .Time}}</td>
+                    <td><i class="wi {{iconToFont .Icon}}"></i></td>
+                    <td>{{.Summary}}</td>
+                </tr>
+{{end}}
+                </table>
             </div>
             <div class="cd-card">
                 <h1>Today, in News</h1>
                 <p>
                 <ul>
-                    <li>Trump slings mud, Clinton exposes a weakness, and reporters get a dare.</li>
-                    <li>'It is quite possibly now the lowest moment in modern history of presidential campaigns,' Clinton supporter Michael Nutter said.</li>
+{{range $story := topStories $.News}}
+                    <li>{{$story.DekOrTitle}}</li>
+{{end}}
                 </ul>
                 </p>
             </div>
