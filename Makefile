@@ -1,4 +1,4 @@
-CSS_FILES = src/stylesheets/all.css
+CSS_FILES = src/stylesheets/all.css stylesheet.css
 
 SCSS = scss
 STATIC = static
