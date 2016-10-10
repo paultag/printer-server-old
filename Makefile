@@ -25,6 +25,7 @@ clean:
 output: build
 	mkdir -p $(OUTPUT) $(OUTPUT_FONTS) $(OUTPUT_CSS)
 	cp -v src/font/* $(OUTPUT_FONTS)
+	cp -v lib/weather-icons/font/* $(OUTPUT_FONTS)
 	cp -v $(CSS_FILES) $(OUTPUT_CSS)
 
 .PHONY: output
