@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>FOO</title>
+        <title>Good Morning!</title>
         <link rel="stylesheet" href = "output/stylesheets/all.css" ></link>
         <link rel="stylesheet" href = "output/stylesheets/stylesheet.css" ></link>
         <link rel="stylesheet" href = "output/stylesheets/weather-icons.css" ></link>
     </head>
     <body>
         <main>
-{{/* For each card, load the template */}}
+        {{template "weather" index . "weather"}}
         </main>
     </body>
 </html>

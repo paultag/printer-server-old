@@ -16,21 +16,21 @@
                 {{with $today := index .Forecast.Daily.Data 0}}
                 Today, you can expect that it will be {{.Summary}}
                 You can expect to see a
-                <span class="cd-highlight">High of {{tempToString .TemperatureMax}}
-                around {{dateToString .TemperatureMaxTime}}</span>
+                <span class="cd-highlight">High of FIXME
+                around TODAY</span>
                 and a
-                <span class="cd-highlight">Low of {{tempToString .TemperatureMin}}
-                around {{dateToString .TemperatureMinTime}}.</span>
+                <span class="cd-highlight">Low of FIXME
+                around TODAY.</span>
                 {{end}}
                 </p>
 
                 <h2>Next 24 Hours</h2>
                 <p><span class="cd-highlight">{{.Forecast.Hourly.Summary}}</span></p>
                 <table>
-{{range $forecast := importantWeather .Forecast.Hourly.Data}}
+{{range $forecast := .Forecast.Hourly.Data}}
                 <tr>
-                    <td>{{dateToString .Time}}</td>
-                    <td><i class="wi {{iconToFont .Icon}}"></i></td>
+                    <td>TODAY</td>
+                    <td><i class="wi wi-FIXME"></i></td>
                     <td>{{.Temperature}}</i>°</td>
                     <td>{{.Summary}}</td>
                 </tr>
