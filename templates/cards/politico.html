@@ -1,0 +1,12 @@
+{{define "politico"}}
+            <div class="cd-card">
+                <h1>Today, in News</h1>
+                <p>
+                <ul>
+{{range $story := topStories $.News}}
+                    <li>{{$story.DekOrTitle}}</li>
+{{end}}
+                </ul>
+                </p>
+            </div>
+{{end}}

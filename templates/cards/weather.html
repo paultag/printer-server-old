@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>FOO</title>
-        <link rel="stylesheet" href = "output/stylesheets/all.css" ></link>
-        <link rel="stylesheet" href = "output/stylesheets/stylesheet.css" ></link>
-        <link rel="stylesheet" href = "output/stylesheets/weather-icons.css" ></link>
-    </head>
-    <body>
-        <main>
+{{define "weather"}}
             <div class="cd-card">
                 <h1>Today's Weather</h1>
                 {{if .Forecast.Alerts}}
@@ -47,16 +37,4 @@
 {{end}}
                 </table>
             </div>
-            <div class="cd-card">
-                <h1>Today, in News</h1>
-                <p>
-                <ul>
-{{range $story := topStories $.News}}
-                    <li>{{$story.DekOrTitle}}</li>
 {{end}}
-                </ul>
-                </p>
-            </div>
-        </main>
-    </body>
-</html>
