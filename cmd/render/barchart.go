@@ -1,9 +1,10 @@
 package main
 
 type Label struct {
-	X    int
-	Y    int
-	Text string
+	X      int
+	Y      int
+	Text   string
+	Rotate int
 }
 
 type Bar struct {
@@ -12,6 +13,7 @@ type Bar struct {
 	X      int
 	Y      int
 	Label  Label
+	YLabel Label
 }
 
 type Barchart struct {

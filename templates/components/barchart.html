@@ -1,9 +1,13 @@
+{{define "barchart-label"}}
+    <text y="{{.Y}}" x="{{.X}}" font-size=".5em" transform="rotate({{.Rotate}} {{.X}},{{.Y}})">{{.Text}}</text>
+{{end}}
 {{define "barchart"}}
 <svg width="{{.Width}}" height="{{.Height}}" role="img">
 {{range .Bars}}
   <g class="bar">
-    <text y="{{.Label.Y}}" x="{{.Label.X}}" font-size=".5em" transform="rotate(-45 {{.Label.X}},{{.Label.Y}})">{{.Label.Text}}</text>
+    {{template "barchart-label" .Label}}
     <rect width="{{.Width}}" height="{{.Height}}" y="{{.Y}}" x="{{.X}}"></rect>
+    {{template "barchart-label" .YLabel}}
   </g>
 {{end}}
 </svg>

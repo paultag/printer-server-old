@@ -12,10 +12,8 @@
                 </ul>
                 {{end}}
                 <h2>Today</h2>
-
-{{template "barchart" .DailyBarchart}}
-
                 <p><b>{{.Forecast.Hourly.Summary}}</b></p>
+{{template "barchart" .DailyBarchart}}
                 <table>
                 </table>
             </div>
