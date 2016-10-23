@@ -1,3 +1,14 @@
+{{define "barchart"}}
+<svg width="{{.Width}}" height="{{.Height}}" role="img">
+{{range .Bars}}
+  <g class="bar">
+    <text y="{{.Label.Y}}" x="{{.Label.X}}" font-size=".5em" transform="rotate(-45 {{.Label.X}},{{.Label.Y}})">{{.Label.Text}}</text>
+    <rect width="{{.Width}}" height="{{.Height}}" y="{{.Y}}" x="{{.X}}"></rect>
+  </g>
+{{end}}
+</svg>
+{{end}}
+
 {{define "weather"}}
             <div class="cd-card">
                 <h1>Today's Weather</h1>
@@ -12,29 +23,11 @@
                 </ul>
                 {{end}}
                 <h2>Today</h2>
-                <p>
-                {{with $today := index .Forecast.Daily.Data 0}}
-                Today, you can expect that it will be {{.Summary}}
-                You can expect to see a
-                <span class="cd-highlight">High of FIXME
-                around TODAY</span>
-                and a
-                <span class="cd-highlight">Low of FIXME
-                around TODAY.</span>
-                {{end}}
-                </p>
 
-                <h2>Next 24 Hours</h2>
-                <p><span class="cd-highlight">{{.Forecast.Hourly.Summary}}</span></p>
+{{template "barchart" .DailyBarchart}}
+
+                <p><b>{{.Forecast.Hourly.Summary}}</b></p>
                 <table>
-{{range $forecast := .Forecast.Hourly.Data}}
-                <tr>
-                    <td>TODAY</td>
-                    <td><i class="wi wi-FIXME"></i></td>
-                    <td>{{.Temperature}}</i>°</td>
-                    <td>{{.Summary}}</td>
-                </tr>
-{{end}}
                 </table>
             </div>
 {{end}}
