@@ -35,7 +35,7 @@ func (Sense) Config() CardConfig {
 
 func (s Sense) Query() (interface{}, error) {
 	timeline, err := s.senseAPI.Timeline(
-		time.Now().Add((-time.Hour * 48)).Format("2006-01-02"))
+		time.Now().Add((-time.Hour * 24)).Format("2006-01-02"))
 	if err != nil {
 		panic(err)
 	}
