@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"encoding/json"
+
 	"html/template"
 	"net/http"
 )
@@ -53,11 +55,31 @@ func NewServer() (*Server, error) {
 	}, nil
 }
 
+type Config struct {
+	DarkSkyAPIKey string
+	Lat           string
+	Lon           string
+}
+
+func loadConfig(path string) (*Config, error) {
+	config := Config{}
+	fd, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	return &config, json.NewDecoder(fd).Decode(&config)
+}
+
 func main() {
+	config, err := loadConfig(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+
 	forecast, _ := NewForecast(
-		"ec481833289cd59606c38a87a6a408f0",
-		"38.874609",
-		"-77.001758",
+		config.DarkSkyAPIKey,
+		config.Lat,
+		config.Lon,
 	)
 
 	server, err := NewServer()
