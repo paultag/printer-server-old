@@ -5,9 +5,13 @@
 <svg width="{{.Width}}" height="{{.Height}}" role="img">
 {{range .Bars}}
   <g class="bar">
+{{if .Label.Text}}
     {{template "barchart-label" .Label}}
+{{end}}
     <rect width="{{.Width}}" height="{{.Height}}" y="{{.Y}}" x="{{.X}}"></rect>
+{{if .YLabel.Text}}
     {{template "barchart-label" .YLabel}}
+{{end}}
   </g>
 {{end}}
 </svg>
