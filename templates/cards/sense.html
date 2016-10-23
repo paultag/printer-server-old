@@ -1,0 +1,9 @@
+{{define "sense"}}
+            <div class="cd-card">
+                <h1>Sleep</h1>
+                {{.Timeline.Message}}
+                {{ range .ImportantEvents }}
+                {{.Message}} at {{humanDate .Timestamp.Time}}
+                {{ end }}
+            </div>
+{{end}}

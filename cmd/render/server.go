@@ -5,13 +5,13 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"encoding/json"
 
 	"html/template"
 	"net/http"
-
-	"pault.ag/go/wmata"
+	// "pault.ag/go/wmata"
 )
 
 func loadTemplates(root string) (*template.Template, error) {
@@ -26,7 +26,13 @@ func loadTemplates(root string) (*template.Template, error) {
 		files = append(files, path)
 		return nil
 	})
-	return template.ParseFiles(files...)
+	return template.New("").Funcs(
+		map[string]interface{}{
+			"humanDate": func(when time.Time) string {
+				return when.Format("03:04 PM")
+			},
+		},
+	).ParseFiles(files...)
 }
 
 type Server struct {
@@ -58,10 +64,11 @@ func NewServer() (*Server, error) {
 }
 
 type Config struct {
-	WMATAAPIKey   string
-	DarkSkyAPIKey string
-	Lat           string
-	Lon           string
+	SenseDirectory string
+	WMATAAPIKey    string
+	DarkSkyAPIKey  string
+	Lat            string
+	Lon            string
 }
 
 func loadConfig(path string) (*Config, error) {
@@ -84,21 +91,24 @@ func main() {
 		panic(err)
 	}
 
-	forecast, _ := NewForecast(
-		config.DarkSkyAPIKey,
-		config.Lat,
-		config.Lon,
-	)
-	server.Add(forecast)
+	// forecast, _ := NewForecast(
+	// 	config.DarkSkyAPIKey,
+	// 	config.Lat,
+	// 	config.Lon,
+	// )
+	// server.Add(forecast)
 
-	politico, _ := NewPolitico()
-	server.Add(politico)
+	// politico, _ := NewPolitico()
+	// server.Add(politico)
 
-	wmata, _ := NewWMATA(
-		config.WMATAAPIKey,
-		[]wmata.Line{wmata.GreenLine},
-	)
-	server.Add(wmata)
+	// wmata, _ := NewWMATA(
+	// 	config.WMATAAPIKey,
+	// 	[]wmata.Line{wmata.GreenLine},
+	// )
+	// server.Add(wmata)
+
+	sense, _ := NewSense(config.SenseDirectory)
+	server.Add(sense)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))
@@ -115,7 +125,9 @@ func main() {
 		}
 		w.Header().Set("Content-Type", "text/html; charset=UTF-8")
 		w.WriteHeader(200)
-		template.ExecuteTemplate(w, "index.html", query)
+		if err := template.ExecuteTemplate(w, "index.html", query); err != nil {
+			log.Println(err)
+		}
 	})
 	http.ListenAndServe(":8080", nil)
 }
