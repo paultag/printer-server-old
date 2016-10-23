@@ -71,22 +71,22 @@ func loadConfig(path string) (*Config, error) {
 }
 
 func main() {
-	config, err := loadConfig(os.Args[1])
-	if err != nil {
-		panic(err)
-	}
+	// config, err := loadConfig(os.Args[1])
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	server, err := NewServer()
 	if err != nil {
 		panic(err)
 	}
 
-	forecast, _ := NewForecast(
-		config.DarkSkyAPIKey,
-		config.Lat,
-		config.Lon,
-	)
-	server.Add(forecast)
+	// forecast, _ := NewForecast(
+	// 	config.DarkSkyAPIKey,
+	// 	config.Lat,
+	// 	config.Lon,
+	// )
+	// server.Add(forecast)
 
 	politico, _ := NewPolitico()
 	server.Add(politico)
