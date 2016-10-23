@@ -12,6 +12,19 @@
                 </ul>
                 {{end}}
                 <p><b>{{.Forecast.Hourly.Summary}}</b></p>
+
+                {{with .Today}}
+                <div class="cd-half" >
+                    <i class="wi {{.WeatherIcon}}"></i>
+                    <span class="high-temp">{{.TemperatureMax}}</span> / {{.TemperatureMin}}
+                </div>
+                <div class="cd-half" >
+                    Humidity: {{.HumidityString}}<br />
+                    Wind: {{.WindSpeed}} <br />
+                    Rain: {{.PrecipProbability}}%</br />
+                </div>
+                {{end}}
+
 {{template "barchart" .DailyBarchart}}
                 <table>
                 </table>

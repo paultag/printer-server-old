@@ -71,12 +71,12 @@ func loadConfig(path string) (*Config, error) {
 }
 
 func main() {
-	config, err := loadConfig(os.Args[1])
+	server, err := NewServer()
 	if err != nil {
 		panic(err)
 	}
 
-	server, err := NewServer()
+	config, err := loadConfig(os.Args[1])
 	if err != nil {
 		panic(err)
 	}

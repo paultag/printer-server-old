@@ -7,8 +7,35 @@ import (
 	forecast "github.com/mlbright/forecast/v2"
 )
 
+type ForecastDataPoint struct {
+	forecast.DataPoint
+}
+
 type ForecastData struct {
 	Forecast forecast.Forecast
+}
+
+func (f ForecastDataPoint) HumidityString() string {
+	return fmt.Sprintf("%d%%", int(f.Humidity*100))
+}
+
+func (f ForecastDataPoint) WeatherIcon() string {
+	return map[string]string{
+		"clear-day":           "wi-day-sunny",
+		"clear-night":         "wi-night-clear",
+		"rain":                "wi-day-rain",
+		"snow":                "wi-day-snow",
+		"sleet":               "wi-day-sleet",
+		"wind":                "wi-day-windy",
+		"fog":                 "wi-fog",
+		"cloudy":              "wi-day-cloudy",
+		"partly-cloudy-day":   "wi-day-cloudy",
+		"partly-cloudy-night": "wi-night-cloudy",
+	}[f.Icon]
+}
+
+func (f ForecastData) Today() ForecastDataPoint {
+	return ForecastDataPoint{f.Forecast.Daily.Data[0]}
 }
 
 func (f ForecastData) DailyBarchart() Barchart {
