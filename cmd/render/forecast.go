@@ -19,6 +19,14 @@ func (f ForecastDataPoint) HumidityString() string {
 	return fmt.Sprintf("%d%%", int(f.Humidity*100))
 }
 
+func (f ForecastDataPoint) TemperatureMaxString() string {
+	return fmt.Sprintf("%d°", int(f.TemperatureMax))
+}
+
+func (f ForecastDataPoint) TemperatureMinString() string {
+	return fmt.Sprintf("%d°", int(f.TemperatureMin))
+}
+
 func (f ForecastDataPoint) WeatherIcon() string {
 	return map[string]string{
 		"clear-day":           "wi-day-sunny",
