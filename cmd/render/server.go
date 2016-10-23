@@ -11,7 +11,8 @@ import (
 
 	"html/template"
 	"net/http"
-	// "pault.ag/go/wmata"
+
+	"pault.ag/go/wmata"
 )
 
 func loadTemplates(root string) (*template.Template, error) {
@@ -91,21 +92,21 @@ func main() {
 		panic(err)
 	}
 
-	// forecast, _ := NewForecast(
-	// 	config.DarkSkyAPIKey,
-	// 	config.Lat,
-	// 	config.Lon,
-	// )
-	// server.Add(forecast)
+	forecast, _ := NewForecast(
+		config.DarkSkyAPIKey,
+		config.Lat,
+		config.Lon,
+	)
+	server.Add(forecast)
 
-	// politico, _ := NewPolitico()
-	// server.Add(politico)
+	politico, _ := NewPolitico()
+	server.Add(politico)
 
-	// wmata, _ := NewWMATA(
-	// 	config.WMATAAPIKey,
-	// 	[]wmata.Line{wmata.GreenLine},
-	// )
-	// server.Add(wmata)
+	wmata, _ := NewWMATA(
+		config.WMATAAPIKey,
+		[]wmata.Line{wmata.GreenLine},
+	)
+	server.Add(wmata)
 
 	sense, _ := NewSense(config.SenseDirectory)
 	server.Add(sense)
