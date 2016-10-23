@@ -1,0 +1,10 @@
+{{define "barchart"}}
+<svg width="{{.Width}}" height="{{.Height}}" role="img">
+{{range .Bars}}
+  <g class="bar">
+    <text y="{{.Label.Y}}" x="{{.Label.X}}" font-size=".5em" transform="rotate(-45 {{.Label.X}},{{.Label.Y}})">{{.Label.Text}}</text>
+    <rect width="{{.Width}}" height="{{.Height}}" y="{{.Y}}" x="{{.X}}"></rect>
+  </g>
+{{end}}
+</svg>
+{{end}}

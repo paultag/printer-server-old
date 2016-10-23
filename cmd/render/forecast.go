@@ -10,26 +10,6 @@ type ForecastData struct {
 	Forecast forecast.Forecast
 }
 
-type Label struct {
-	X    int
-	Y    int
-	Text string
-}
-
-type Bar struct {
-	Width  int
-	Height int
-	X      int
-	Y      int
-	Label  Label
-}
-
-type Barchart struct {
-	Width  int
-	Height int
-	Bars   []Bar
-}
-
 func (f ForecastData) DailyBarchart() Barchart {
 	bars := []Bar{}
 	height := 200
@@ -42,7 +22,7 @@ func (f ForecastData) DailyBarchart() Barchart {
 			X:      (index * 21),
 			Y:      (height - barHeight),
 			Label: Label{
-				X:    (index * 20) + 10,
+				X:    (index * 21) + 10,
 				Y:    (height - barHeight) - 5,
 				Text: fmt.Sprintf("%d°", int(el.Temperature)),
 			},
