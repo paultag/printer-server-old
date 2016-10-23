@@ -18,7 +18,7 @@ func (f ForecastData) DailyBarchart() Barchart {
 	for index, el := range f.Forecast.Hourly.Data[:22] {
 		barHeight := int(el.Temperature)
 
-		bars = append(bars, Bar{
+		bar := Bar{
 			Width:  20,
 			Height: barHeight,
 			X:      (index * 21),
@@ -29,18 +29,23 @@ func (f ForecastData) DailyBarchart() Barchart {
 				Text:   fmt.Sprintf("%d°", int(el.Temperature)),
 				Rotate: -45,
 			},
-			YLabel: Label{
+		}
+
+		if index%2 == 0 {
+			bar.YLabel = Label{
 				X:      (index * 21),
 				Y:      height + 7,
 				Text:   time.Unix(int64(el.Time), 0).Format("03:04 PM"),
 				Rotate: 45,
-			},
-		})
+			}
+		}
+
+		bars = append(bars, bar)
 	}
 
 	return Barchart{
 		Width:  472,
-		Height: height + 50,
+		Height: height + 60,
 		Bars:   bars,
 	}
 }
