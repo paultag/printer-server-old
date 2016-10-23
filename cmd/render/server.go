@@ -76,17 +76,20 @@ func main() {
 		panic(err)
 	}
 
+	server, err := NewServer()
+	if err != nil {
+		panic(err)
+	}
+
 	forecast, _ := NewForecast(
 		config.DarkSkyAPIKey,
 		config.Lat,
 		config.Lon,
 	)
-
-	server, err := NewServer()
-	if err != nil {
-		panic(err)
-	}
 	server.Add(forecast)
+
+	politico, _ := NewPolitico()
+	server.Add(politico)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))

@@ -3,7 +3,9 @@
                 <h1>Today, in News</h1>
                 <p>
                 <ul>
-                    <li>Something</li>
+{{ range .Headlines }}
+                    <li>{{.}}</li>
+{{ end }}
                 </ul>
                 </p>
             </div>
