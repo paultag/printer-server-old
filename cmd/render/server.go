@@ -10,6 +10,8 @@ import (
 
 	"html/template"
 	"net/http"
+
+	"pault.ag/go/wmata"
 )
 
 func loadTemplates(root string) (*template.Template, error) {
@@ -56,6 +58,7 @@ func NewServer() (*Server, error) {
 }
 
 type Config struct {
+	WMATAAPIKey   string
 	DarkSkyAPIKey string
 	Lat           string
 	Lon           string
@@ -90,6 +93,12 @@ func main() {
 
 	politico, _ := NewPolitico()
 	server.Add(politico)
+
+	wmata, _ := NewWMATA(
+		config.WMATAAPIKey,
+		[]wmata.Line{wmata.GreenLine},
+	)
+	server.Add(wmata)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))
