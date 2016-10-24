@@ -1,17 +1,14 @@
 package main
 
 import (
+	"encoding/json"
+	"html/template"
 	"image/jpeg"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
-
-	"encoding/json"
-
-	"html/template"
-	"net/http"
 
 	"pault.ag/go/wmata"
 )
