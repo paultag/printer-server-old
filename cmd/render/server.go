@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"image/jpeg"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"

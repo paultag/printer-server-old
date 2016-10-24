@@ -6,7 +6,6 @@ import (
 
 	"fmt"
 	"image"
-	"net/url"
 	"runtime"
 
 	"github.com/gotk3/gotk3/glib"
