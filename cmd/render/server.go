@@ -130,5 +130,12 @@ func main() {
 			log.Println(err)
 		}
 	})
-	http.ListenAndServe(":8080", nil)
+	go http.ListenAndServe(":8080", nil)
+
+	image, err := Snapshot("http://localhost:8080/")
+	ohshit(err)
+
+	i, _ := os.Create("new.jpg")
+	defer i.Close()
+	ohshit(jpeg.Encode(i, image, &jpeg.Options{jpeg.DefaultQuality}))
 }
