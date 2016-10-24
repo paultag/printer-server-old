@@ -14,7 +14,7 @@ import (
 	"github.com/sourcegraph/go-webkit2/webkit2"
 )
 
-func Snapshot(uri url.URL) (*image.Gray, error) {
+func Snapshot(uri string) (*image.Gray, error) {
 	runtime.LockOSThread()
 	gtk.Init(nil)
 	win, err := gtk.OffscreenWindowNew()

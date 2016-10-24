@@ -1,6 +1,7 @@
 package main
 
 import (
+	"image/jpeg"
 	"log"
 	"os"
 	"path/filepath"
@@ -14,6 +15,12 @@ import (
 
 	"pault.ag/go/wmata"
 )
+
+func ohshit(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
 
 func loadTemplates(root string) (*template.Template, error) {
 	files := []string{}
