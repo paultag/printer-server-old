@@ -106,7 +106,11 @@ func main() {
 	)
 	server.Add(wmata)
 
-	sense, _ := NewSense(config.SenseDirectory)
+	sense, err := NewSense(config.SenseDirectory)
+	if err != nil {
+		panic(err)
+	}
+
 	server.Add(sense)
 
 	fs := http.FileServer(http.Dir("output"))
