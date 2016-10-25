@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"html/template"
-	"image/jpeg"
 	"log"
 	"net/http"
 	"os"
@@ -13,12 +12,6 @@ import (
 
 	"pault.ag/go/wmata"
 )
-
-func ohshit(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
 
 func loadTemplates(root string) (*template.Template, error) {
 	files := []string{}
@@ -135,12 +128,5 @@ func main() {
 			log.Println(err)
 		}
 	})
-	go http.ListenAndServe(":8080", nil)
-
-	image, err := Snapshot("http://localhost:8080/")
-	ohshit(err)
-
-	i, _ := os.Create("new.jpg")
-	defer i.Close()
-	ohshit(jpeg.Encode(i, image, &jpeg.Options{jpeg.DefaultQuality}))
+	http.ListenAndServe(":8080", nil)
 }
