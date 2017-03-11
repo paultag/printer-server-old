@@ -96,7 +96,7 @@ func (f Forecast) Config() CardConfig {
 }
 
 func (f Forecast) Query() (interface{}, error) {
-	data, err := forecast.Get(f.apikey, f.lat, f.lon, "now", forecast.US)
+	data, err := forecast.Get(f.apikey, f.lat, f.lon, "now", forecast.US, forecast.English)
 	return &ForecastData{
 		Forecast: *data,
 	}, err
