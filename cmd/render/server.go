@@ -63,11 +63,14 @@ func NewServer() (*Server, error) {
 }
 
 type Config struct {
-	SenseDirectory string
-	WMATAAPIKey    string
-	DarkSkyAPIKey  string
-	Lat            string
-	Lon            string
+	SenseDirectory   string
+	WMATAAPIKey      string
+	DarkSkyAPIKey    string
+	Lat              string
+	Lon              string
+	CalendarURL      string
+	CalendarUsername string
+	CalendarPassword string
 }
 
 func loadConfig(path string) (*Config, error) {
@@ -89,6 +92,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	remind, _ := NewRemind(
+		config.CalendarURL,
+		config.CalendarUsername,
+		config.CalendarPassword,
+	)
+	server.Add(remind)
 
 	forecast, _ := NewForecast(
 		config.DarkSkyAPIKey,
