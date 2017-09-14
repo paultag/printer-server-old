@@ -66,6 +66,7 @@ type Config struct {
 	SenseDirectory   string
 	WMATAAPIKey      string
 	DarkSkyAPIKey    string
+	NYTimesAPIKey    string
 	Lat              string
 	Lon              string
 	CalendarURL      string
@@ -109,6 +110,9 @@ func main() {
 
 	politico, _ := NewPolitico()
 	server.Add(politico)
+
+	nytimes, _ := NewNYTimes(config.NYTimesAPIKey)
+	server.Add(nytimes)
 
 	wmata, _ := NewWMATA(
 		config.WMATAAPIKey,

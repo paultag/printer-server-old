@@ -1,0 +1,11 @@
+{{define "nytimes"}}
+            <div class="cd-card">
+                <h1>New York Times</h1>
+                <ul>
+{{ range .Headlines }}
+                    <li>{{.}}</li>
+{{ end }}
+                </ul>
+                </p>
+            </div>
+{{end}}
