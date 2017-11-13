@@ -63,7 +63,6 @@ func NewServer() (*Server, error) {
 }
 
 type Config struct {
-	SenseDirectory   string
 	WMATAAPIKey      string
 	DarkSkyAPIKey    string
 	NYTimesAPIKey    string
@@ -108,9 +107,6 @@ func main() {
 	)
 	server.Add(forecast)
 
-	politico, _ := NewPolitico()
-	server.Add(politico)
-
 	nytimes, _ := NewNYTimes(config.NYTimesAPIKey)
 	server.Add(nytimes)
 
@@ -119,13 +115,6 @@ func main() {
 		[]wmata.Line{wmata.GreenLine},
 	)
 	server.Add(wmata)
-
-	sense, err := NewSense(config.SenseDirectory)
-	if err != nil {
-		panic(err)
-	}
-
-	server.Add(sense)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))
