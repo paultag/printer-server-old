@@ -3,15 +3,22 @@ html {
 }
 
 .weather-temps {
-    font-size:   1.5em;
+    font-size:   1.1em;
 }
 
 .wi {
     font-size:   2.5em;
 }
 
+.cd-date {
+    width: 191px;
+}
+
 .cd-weather {
-    text-align: center;
+    width: 383px;
+    height: 191px;
+    padding-left: 20px;
+    padding-top: 19px;
 }
 
 .high-temp {
