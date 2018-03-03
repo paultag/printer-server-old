@@ -25,3 +25,111 @@ html {
     font-weight: bold;
     font-size:   1.2em;
 }
+
+.cd-card h1 {
+    font-size: 1.3em;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 0px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.entry {
+    border-bottom: 1px solid #000000;
+}
+
+.entry td {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.agenda-description {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+.fb-intro {
+    font-size: 0.9em;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+.agenda-time {
+    width: 200px;
+}
+
+.wmata-line {
+    width: 2.5em;
+    padding-left: 0.8em;
+}
+
+.wmata-line span {
+    display: inline-block;
+    margin: 0px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    padding: 0.4em;
+    font-family: "Helvetica";
+    font-weight: bold;
+    font-size: 0.8em;
+    line-height: 1.25em;
+}
+
+.wmata-description {
+    font-size: 0.8em;
+}
+
+time.icon {
+  font-size: 1em;
+  display: block;
+  position: relative;
+  width: 191px;
+  height: 191px;
+  background-color: #fff;
+  border-radius: 0.6em;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+
+time.icon * {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+time.icon strong {
+  font-size: 1.4em;
+  position: absolute;
+  top: 0;
+  padding: 0.1em 0;
+  color: #000000;
+
+  background: repeating-linear-gradient(
+      30deg,
+      #000000,     #000000 2px,
+      #FFFFFF 0px, #FFFFFF 8px
+  );
+  text-shadow: -2px -2px 0 #FFF, 2px -2px 0 #FFF, -2px 2px 0 #FFF, 2px 2px 0 #FFF;  
+  border-bottom: 1px solid #000;
+}
+
+time.icon em {
+  position: absolute;
+  bottom: 0.3em;
+  color: #000;
+}
+
+time.icon span {
+  font-size: 2.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.8em;
+  color: #2f2f2f;
+}
