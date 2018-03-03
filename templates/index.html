@@ -1,18 +1,106 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Good Morning!</title>
-        <link rel="stylesheet" href = "output/stylesheets/all.css" ></link>
-        <link rel="stylesheet" href = "output/stylesheets/stylesheet.css" ></link>
+        <link rel="stylesheet" href="output/stylesheets/all.css"></link>
+        <link rel="stylesheet" href="new.css"></link>
+        <link rel="stylesheet" href="output/stylesheets/stylesheet.css"></link>
         <link rel="stylesheet" href = "output/stylesheets/weather-icons.css" ></link>
     </head>
     <body>
         <main>
-        {{template "weather" index . "weather"}}
-        {{template "remind" index . "remind"}}
-        {{template "nytimes" index . "nytimes"}}
-        {{template "wmata" index . "wmata"}}
+        <p></p>
+            <div class="cd-card">
+                <div class="cd-half cd-date">
+                    <time class="icon">
+                      <em>Sunday</em>
+                      <strong>Feb</strong>
+                      <span>25</span>
+                    </time>
+                </div>
+                <div class="cd-half">
+                    <div class="cd-weather">
+                        <div class="weather-temps">
+                        <i class="wi wi-day-snow"></i>
+                            <span class="high-temp">31°</span> / 28°
+                        </div>
+                        <p>
+                        Snow (9–14 in.) and windy starting in the afternoon.
+                        </p>
+                    </div>
+                </div>
+                <div class="cd-clear"></div>
+            </div>
+            <div class="cd-card">
+                <h1>What's Next?</h1>
+                <table>
+                    <tr class="entry">
+                        <td class="agenda-time">All Day</td>
+                        <td class="agenda-description">Festivus</td>
+                    </tr>
+                    <tr class="entry">
+                        <td class="agenda-time">12:00 - 14:00</td>
+                        <td class="agenda-description">Lunch with John Smith, Jane Smith and Bobby</td>
+                    </tr>
+                    <tr class="entry">
+                        <td class="agenda-time">12:00 - 14:00</td>
+                        <td class="agenda-description">Lunch with John Smith, Jane Smith and Bobby</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cd-card">
+                <h1>Metro</h1>
+                <table>
+                    <tr class="entry">
+                        <td class="wmata-line"><span>BL</span></td>
+                        <td class="wmata-description">Trains operate every 24 min w/ single tracking btwn Foggy Bottom & Clarendon/Arl Cem due to scheduled maintenance.</td>
+                    </tr>
+                    <tr class="entry">
+                        <td class="wmata-line"><span>GL</span></td>
+                        <td class="wmata-description">Trains operate every 16 min w/ single tracking btwn U Street & Georgia Ave due to scheduled maintenance.</td>
+                    </tr>
+                    <tr class="entry">
+                        <td class="wmata-line"><span>OL</span></td>
+                        <td class="wmata-description">Trains operate every 24 min w/ single tracking btwn Foggy Bottom & Clarendon/Arl Cem due to scheduled maintenance.</td>
+                    </tr>
+                    <tr class="entry">
+                        <td class="wmata-line"><span>YL</span></td>
+                        <td class="wmata-description">Trains operate every 16 min btwn Huntington & Mt Vernon Square only. Use Green Line to continue trip.</td>
+                    </tr>
+                </table>
+            </div>
+                <!--
+                    Monday: Overview
+                    Tuesday: Economy
+                    Wednesday: Population
+                    Thursday: Terrorism
+                    Friday: Branches of Government
+                -->
+            <!--
+            <div class="cd-card">
+                <h1>CIA Factbook</h1>
+                <p>
+                <b>Germany</b> -
+                three times the size of Pennsylvania; slightly smaller than Montana
+                , located in
+                Central Europe, bordering the Baltic Sea and the North Sea, between the Netherlands and Poland, south of Denmark
+                </p>
+                <p class="fb-intro">
+                <img width="556" src="https://api.mapbox.com/styles/v1/mapbox/cj3kbeqzo00022smj7akz3o1e/static/9.0,51.0,3,0,0/556x200?access_token=pk.eyJ1IjoicGF1bHRhZ2dzIiwiYSI6ImNqMzgwc2RwcjAyOHMycXVqMzF2enBnd2oifQ.I-TTFk4uez8J_sEOkVewMg" class="cd-image" />
+As Europe's largest economy and second most populous nation (after Russia), Germany is a key member of the continent's economic, political, and defense organizations. European power struggles immersed Germany in two devastating World Wars in the first half of the 20th century and left the country occupied by the victorious Allied powers of the US, UK, France, and the Soviet Union in 1945. With the advent of the Cold War, two German states were formed in 1949: the western Federal Republic of Germany (FRG) and the eastern German Democratic Republic (GDR). The democratic FRG embedded itself in key western economic and security organizations, the EC, which became the EU, and NATO, while the communist GDR was on the front line of the Soviet-led Warsaw Pact. The decline of the USSR and the end of the Cold War allowed for German reunification in 1990. Since then, Germany has expended considerable funds to bring eastern productivity and wages up to western standards. In January 1999, Germany and 10 other EU countries introduced a common European exchange currency, the euro.
+                </p>
+            </div>
+            <div class="cd-card">
+                <hr>
+                <p>
+                <img width="556" src="img/sudoku.svg" />
+                </p>
+            </div>
+            -->
+            <br />
+            <br />
         </main>
     </body>
 </html>
