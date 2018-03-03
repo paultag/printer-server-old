@@ -1,5 +1,7 @@
 package main
 
+/*
+
 import (
 	"fmt"
 	"time"
@@ -109,3 +111,4 @@ func NewForecast(apikey, lat, lon string) (*Forecast, error) {
 		apikey: apikey,
 	}, nil
 }
+*/

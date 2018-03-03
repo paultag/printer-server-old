@@ -1,5 +1,9 @@
 package factbook
 
+type Factbook struct {
+	Countries map[string]Country `json:"countries"`
+}
+
 type Country struct {
 	Data Data `json:"data"`
 }

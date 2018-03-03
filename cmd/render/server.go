@@ -9,8 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
-
-	"pault.ag/go/wmata"
+	// "pault.ag/go/wmata"
 )
 
 func loadTemplates(root string) (*template.Template, error) {
@@ -92,29 +91,30 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	_ = config
 
-	remind, _ := NewRemind(
-		config.CalendarURL,
-		config.CalendarUsername,
-		config.CalendarPassword,
-	)
-	server.Add(remind)
+	// remind, _ := NewRemind(
+	// 	config.CalendarURL,
+	// 	config.CalendarUsername,
+	// 	config.CalendarPassword,
+	// )
+	// server.Add(remind)
 
-	forecast, _ := NewForecast(
-		config.DarkSkyAPIKey,
-		config.Lat,
-		config.Lon,
-	)
-	server.Add(forecast)
+	// forecast, _ := NewForecast(
+	// 	config.DarkSkyAPIKey,
+	// 	config.Lat,
+	// 	config.Lon,
+	// )
+	// server.Add(forecast)
 
-	nytimes, _ := NewNYTimes(config.NYTimesAPIKey)
-	server.Add(nytimes)
+	// nytimes, _ := NewNYTimes(config.NYTimesAPIKey)
+	// server.Add(nytimes)
 
-	wmata, _ := NewWMATA(
-		config.WMATAAPIKey,
-		[]wmata.Line{wmata.GreenLine},
-	)
-	server.Add(wmata)
+	// wmata, _ := NewWMATA(
+	// 	config.WMATAAPIKey,
+	// 	[]wmata.Line{wmata.GreenLine},
+	// )
+	// server.Add(wmata)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))
