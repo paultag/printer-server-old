@@ -1,0 +1,23 @@
+{{define "wmata"}}
+{{ if .HasIncidents }}
+            <div class="cd-card">
+                <h1>Metro</h1>
+                <table>
+{{ range .GreenLineIncidents}}
+                    <tr class="entry">
+                        <td class="wmata-line">
+                            {{ range .LinesAffected }}
+                            {{ if .Code }}
+                            <span>{{.Code}}</span>
+                            {{end}}
+                            {{ end }}
+                        </td>
+                        <td class="wmata-description">
+                            {{.Description}}
+                        </td>
+                    </tr>
+{{end}}
+                </table>
+            </div>
+{{end}}
+{{end}}

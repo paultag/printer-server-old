@@ -8,6 +8,10 @@ type WMATAData struct {
 	Incidents []wmata.Incident
 }
 
+func (data WMATAData) HasIncidents() bool {
+	return len(data.GreenLineIncidents()) != 0
+}
+
 func (data WMATAData) GreenLineIncidents() []wmata.Incident {
 	line := wmata.GreenLine
 	ret := []wmata.Incident{}

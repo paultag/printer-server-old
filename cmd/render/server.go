@@ -9,7 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
-	// "pault.ag/go/wmata"
+
+	"pault.ag/go/wmata"
 )
 
 func loadTemplates(root string) (*template.Template, error) {
@@ -91,17 +92,19 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	_ = config
 
-	factbook, err := NewFactbook(
+	factbook, _ := NewFactbook(
 		"/home/paultag/2018-01-29_factbook.json",
 		time.Now(),
 	)
-	if err != nil {
-		panic(err)
-	}
 	server.Add(factbook)
 	server.Add(Today{})
+
+	wmata, _ := NewWMATA(
+		config.WMATAAPIKey,
+		[]wmata.Line{wmata.GreenLine},
+	)
+	server.Add(wmata)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))
