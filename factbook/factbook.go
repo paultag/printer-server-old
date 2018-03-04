@@ -1,7 +1,25 @@
 package factbook
 
+import (
+	"fmt"
+	"sort"
+	"time"
+)
+
 type Factbook struct {
 	Countries map[string]Country `json:"countries"`
+}
+
+//
+func (f Factbook) CountryOfTheWeek(when time.Time) Country {
+	keys := []string{}
+	for key, _ := range f.Countries {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	_, week := when.ISOWeek()
+	return f.Countries[keys[week%len(keys)]]
 }
 
 type Country struct {
@@ -11,14 +29,10 @@ type Country struct {
 type Data struct {
 	Name         string       `json:"name"`
 	Introduction Introduction `json:"introduction"`
-}
-
-type Introduction struct {
-	Background string     `json:"background"`
-	Geography  Geography  `json:"geography"`
-	People     People     `json:"people"`
-	Goverment  Government `json:"goverment"`
-	Economy    Economy    `json:"economy"`
+	Geography    Geography    `json:"geography"`
+	People       People       `json:"people"`
+	Government   Government   `json:"government"`
+	Economy      Economy      `json:"economy"`
 	// Energy
 	// Communications Communications `json:"communnications"`
 	// Transportation
@@ -26,13 +40,24 @@ type Introduction struct {
 		// ...
 		TerroirstGroups string `json:"terrorist_groups"`
 	} `json:"military_and_security"`
-	// TransnationalIssues
+	TransnationalIssues TransnationalIssues `json:"transnational_issues"`
+}
+
+type Introduction struct {
+	Background string `json:"background"`
 }
 
 type TransnationalIssues struct {
-	Disputes []string `json:"disputes"`
-	// TraffickingInPersons
-	// IllicitDrugs
+	Disputes             []string             `json:"disputes"`
+	TraffickingInPersons TraffickingInPersons `json:"trafficking_in_persons"`
+	IllicitDrugs         struct {
+		Note string `json:"note"`
+	} `json:"illicit_drugs"`
+}
+
+type TraffickingInPersons struct {
+	CurrentSituation string `json:"current_situation"`
+	TierRating       string `json:"tier_rating"`
 }
 
 type Economy struct {
@@ -94,9 +119,15 @@ type Government struct {
 	LegalSystem string `json:"legal_system"`
 	// Citizenship
 	// Suffrage
-	// ExecutiveBranch
-	// LegislativeBranch
-	// JudicialBranch
+	ExecutiveBranch struct {
+		HeadOfGovernment string `json:"head_of_government"`
+	} `json:"executive_branch"`
+	LegislativeBranch struct {
+		Description string `json:"description"`
+	} `json:"legislative_branch"`
+	JudicialBranch struct {
+		HighestCourts string `json:"highest_courts"`
+	} `json:"judicial_branch"`
 	// PoliticalPartiesAndLeaders
 	// PoliticalPressureGroupsAndLeaders
 	// InternationalOrgnizationParticipation
@@ -143,6 +174,9 @@ type People struct {
 	// Literacy
 	// SchoolLifeExpentancy
 	// YouthUnemployment
+	MajorInfectiousDiseases struct {
+		Note string `json:"note"`
+	} `json:"major_infectious_diseases"`
 }
 
 type UrbanAreas struct {
@@ -153,9 +187,9 @@ type UrbanAreas struct {
 type Places []Place
 
 type Place struct {
-	Place      string `json:"place"`
-	Population int    `json:"population"`
-	IsCapital  bool   `json:"is_capital"`
+	Place      string  `json:"place"`
+	Population float64 `json:"population"`
+	IsCapital  bool    `json:"is_capital"`
 }
 
 type Nationality struct {
@@ -165,7 +199,7 @@ type Nationality struct {
 
 type Geography struct {
 	Location      string      `json:"location"`
-	Coordinates   Coordinates `json:geographic_coordinates`
+	Coordinates   Coordinates `json:"geographic_coordinates"`
 	MapReferences string      `json:"map_references`
 	// Area
 	// LandBoundaries
@@ -188,7 +222,25 @@ type Coordinate struct {
 	Hemisphere string `json:"hemisphere"`
 }
 
+func (c Coordinate) GeoString() string {
+	prefix := ""
+	switch c.Hemisphere {
+	case "S", "W":
+		prefix = "-"
+	}
+	return fmt.Sprintf("%s%d.%d", prefix, c.Degrees, c.Minutes)
+}
+
 type Coordinates struct {
 	Latitude  Coordinate `json:"latitude"`
 	Longitude Coordinate `json:"longitude"`
+}
+
+func (c Coordinates) GeoString() string {
+	return fmt.Sprintf(
+		"%s,%s,3,0,0",
+		c.Longitude.GeoString(),
+		c.Latitude.GeoString(),
+	)
+	// 9.0,51.0,3,0,0
 }

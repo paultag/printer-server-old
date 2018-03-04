@@ -93,28 +93,15 @@ func main() {
 	}
 	_ = config
 
-	// remind, _ := NewRemind(
-	// 	config.CalendarURL,
-	// 	config.CalendarUsername,
-	// 	config.CalendarPassword,
-	// )
-	// server.Add(remind)
-
-	// forecast, _ := NewForecast(
-	// 	config.DarkSkyAPIKey,
-	// 	config.Lat,
-	// 	config.Lon,
-	// )
-	// server.Add(forecast)
-
-	// nytimes, _ := NewNYTimes(config.NYTimesAPIKey)
-	// server.Add(nytimes)
-
-	// wmata, _ := NewWMATA(
-	// 	config.WMATAAPIKey,
-	// 	[]wmata.Line{wmata.GreenLine},
-	// )
-	// server.Add(wmata)
+	// factbook, err := NewFactbook("http://archive.paultag.house/data/2018-01-29_factbook.json")
+	factbook, err := NewFactbook(
+		"/home/paultag/2018-01-29_factbook.json",
+		time.Now(),
+	)
+	if err != nil {
+		panic(err)
+	}
+	server.Add(factbook)
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))

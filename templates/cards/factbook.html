@@ -1,0 +1,90 @@
+{{define "factbook-overview"}}
+    <h1>Overview</h1>
+    {{ .Country.Data.Introduction.Background }}
+{{end}}
+
+{{define "factbook-economy"}}
+    <h1>Economy</h1>
+    {{ .Country.Data.Economy.Overview }}
+{{end}}
+
+{{define "factbook-etemology"}}
+    <h1>Etymology</h1>
+    {{ .Country.Data.Government.CountryName.Etymology }}
+{{end}}
+
+{{define "factbook-drugs"}}
+    <h1>Illicit Drugs</h1>
+    {{ .Country.Data.TransnationalIssues.IllicitDrugs.Note }}
+{{end}}
+
+{{define "factbook-terrorism"}}
+    <h1>Terrorism</h1>
+{{ with .Country.Data.MilitaryAndSecurity }}
+{{ if .TerroirstGroups }}
+  {{.TerroirstGroups}}
+{{ else }}
+  No known terrorist groups operate within this country.
+{{ end }}
+{{end}}
+{{end}}
+
+{{define "factbook-infectious-diseases" }}
+{{ with .Country.Data.People.MajorInfectiousDiseases.Note}}
+    {{.}}
+{{else}}
+    No known major infectious diseases.
+{{end}}
+{{end}}
+
+{{define "factbook-government"}}
+{{ with .Country.Data.Government }}
+    {{.Country.Data.Government.Type}}
+
+    <h2>Head of Executive Branch</h2>
+    {{.ExecutiveBranch.HeadOfGovernment}}
+    <br />
+    <br />
+
+    <h2>Highest Courts</h2>
+    {{.JudicialBranch.HighestCourts}}
+    <br />
+    <br />
+
+    <h2>Legislative System</h2>
+    {{.LegislativeBranch.Description}}
+{{end}}
+{{end}}
+
+{{define "factbook"}}
+<!--
+-->
+<div class="cd-card">
+    <h1>{{.Country.Data.Name}}</h1>
+    <div class="cd-factbook">
+        <img width="556" src="https://api.mapbox.com/styles/v1/mapbox/cj3kbeqzo00022smj7akz3o1e/static/{{.Country.Data.Geography.Coordinates.GeoString}}/556x200?access_token=pk.eyJ1IjoicGF1bHRhZ2dzIiwiYSI6ImNqMzgwc2RwcjAyOHMycXVqMzF2enBnd2oifQ.I-TTFk4uez8J_sEOkVewMg" class="cd-image" />
+{{ if eq .Template "overview" }}
+    {{template "factbook-overview" . }}
+{{ end }}
+{{ if eq .Template "economy" }}
+    {{template "factbook-economy" . }}
+{{ end }}
+{{ if eq .Template "terrorism" }}
+    {{template "factbook-terrorism" . }}
+{{ end }}
+{{ if eq .Template "government-branches" }}
+    {{template "factbook-government" . }}
+{{ end }}
+{{ if eq .Template "illicit-drugs" }}
+    {{template "factbook-drugs" . }}
+{{ end }}
+{{ if eq .Template "etemology" }}
+    {{template "factbook-etemology" . }}
+{{ end }}
+{{ if eq .Template "infectious-diseases" }}
+    {{template "factbook-infectious-diseases" . }}
+{{ end }}
+    </div>
+</div>
+{{end}}
+
