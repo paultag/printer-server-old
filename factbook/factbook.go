@@ -25,6 +25,7 @@ func (f Factbook) CountryOfTheWeek(when time.Time) Country {
 
 	hash := sha256.New()
 	/* max 52 iso weeks */
+	hash.Write([]byte("some calming entropy"))
 	hash.Write([]byte{byte(week)})
 	data := hash.Sum(nil)
 	num := big.NewInt(0).Mod(
@@ -255,5 +256,4 @@ func (c Coordinates) GeoString() string {
 		c.Longitude.GeoString(),
 		c.Latitude.GeoString(),
 	)
-	// 9.0,51.0,3,0,0
 }
