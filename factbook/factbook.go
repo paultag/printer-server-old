@@ -25,7 +25,7 @@ func (f Factbook) CountryOfTheWeek(when time.Time) Country {
 
 	hash := sha256.New()
 	/* max 52 iso weeks */
-	hash.Write([]byte("some calming entropy"))
+	hash.Write([]byte("The Work of a Nation. The Center of Intelligence."))
 	hash.Write([]byte{byte(week)})
 	data := hash.Sum(nil)
 	num := big.NewInt(0).Mod(

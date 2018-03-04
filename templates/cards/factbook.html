@@ -48,10 +48,10 @@
 {{end}}
 {{end}}
 
-{{define "factbook-infectious-diseases" }}
-    <h1>Infectious Diseases</h1>
-{{ with .Country.Data.People.MajorInfectiousDiseases.Note}}
-    {{.}}
+{{define "factbook-transnational-issues" }}
+    <h1>Transnational Disputes</h1>
+{{ range .Country.Data.TransnationalIssues.Disputes }}
+    <p>{{.}}</p>
 {{else}}
     No known major infectious diseases.
 {{end}}
@@ -100,8 +100,8 @@
 {{ if eq .Template "etemology" }}
     {{template "factbook-etemology" . }}
 {{ end }}
-{{ if eq .Template "infectious-diseases" }}
-    {{template "factbook-infectious-diseases" . }}
+{{ if eq .Template "transnational-issues" }}
+    {{template "factbook-transnational-issues" . }}
 {{ end }}
     </div>
 </div>
