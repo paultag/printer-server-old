@@ -101,6 +101,7 @@ func main() {
 		panic(err)
 	}
 	server.Add(factbook)
+	server.Add(Today{})
 
 	fs := http.FileServer(http.Dir("output"))
 	http.Handle("/output/", http.StripPrefix("/output/", fs))
