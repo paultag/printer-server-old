@@ -10,8 +10,7 @@ import (
 )
 
 type Factbook struct {
-	URL  string
-	When time.Time
+	URL string
 }
 
 type Response struct {
@@ -24,6 +23,8 @@ func (f Factbook) Config() CardConfig {
 }
 
 func (f Factbook) Query() (interface{}, error) {
+	when := time.Now()
+
 	body, err := os.Open(f.URL)
 	// resp, err := http.Get(f.URL)
 	if err != nil {
@@ -49,14 +50,13 @@ func (f Factbook) Query() (interface{}, error) {
 	}
 
 	return Response{
-		Country:  fb.CountryOfTheWeek(f.When),
-		Template: templates[f.When.Weekday()],
+		Country:  fb.CountryOfTheWeek(when),
+		Template: templates[when.Weekday()],
 	}, nil
 }
 
-func NewFactbook(url string, when time.Time) (*Factbook, error) {
+func NewFactbook(url string) (*Factbook, error) {
 	return &Factbook{
-		URL:  url,
-		When: when,
+		URL: url,
 	}, nil
 }

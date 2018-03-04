@@ -93,10 +93,7 @@ func main() {
 		panic(err)
 	}
 
-	factbook, _ := NewFactbook(
-		"/home/paultag/2018-01-29_factbook.json",
-		time.Now(),
-	)
+	factbook, _ := NewFactbook("/home/paultag/2018-01-29_factbook.json")
 	server.Add(factbook)
 	server.Add(Today{})
 
