@@ -100,6 +100,13 @@ func main() {
 	server.Add(factbook)
 	server.Add(Today{})
 
+	forecast, _ := NewForecast(
+		config.DarkSkyAPIKey,
+		config.Lat,
+		config.Lon,
+	)
+	server.Add(forecast)
+
 	wmata, _ := NewWMATA(
 		config.WMATAAPIKey,
 		[]wmata.Line{wmata.GreenLine},

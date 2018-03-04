@@ -1,5 +1,6 @@
 {{define "today"}}
             <div class="cd-card">
+{{ with .today }}
                 <div class="cd-half cd-date">
                     <time class="icon">
                       <em>{{.When.Weekday}}</em>
@@ -7,17 +8,28 @@
                       <span>{{.When.Day}}</span>
                     </time>
                 </div>
+{{end}}
+{{ with .weather }}
                 <div class="cd-half">
                     <div class="cd-weather">
                         <div class="weather-temps">
-                        <i class="wi wi-day-snow"></i>
-                            <span class="high-temp">31°</span> / 28°
+                        <i class="wi {{.Icon}}"></i>
+                            <span class="high-temp">{{.High}}°</span> / {{.Low}}°
                         </div>
                         <p>
-                        Snow (9–14 in.) and windy starting in the afternoon.
+                        {{.Forecast.Hourly.Summary}}
                         </p>
                     </div>
                 </div>
+{{end}}
+                <div class="cd-clear"></div>
+                <div class="cd-whole">
+{{ range .Forecast.Alerts }}
+    <span class="cd-highlight">{{.Title}}</span><br />
+{{ end }}
+                </div>
+{{ if .Forecast.Alerts }}
+{{end}}
                 <div class="cd-clear"></div>
             </div>
 {{end}}
