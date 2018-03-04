@@ -39,13 +39,13 @@ func (f Factbook) Query() (interface{}, error) {
 
 	/* ISO Weeks start on Monday */
 	templates := []string{
+		"infectious-diseases",
+		"overview",
+		"economy",
 		"terrorism",
 		"government-branches",
 		"illicit-drugs",
 		"etemology",
-		"infectious-diseases",
-		"overview",
-		"economy",
 	}
 
 	return Response{

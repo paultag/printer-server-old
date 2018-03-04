@@ -95,7 +95,7 @@ func main() {
 
 	factbook, err := NewFactbook(
 		"/home/paultag/2018-01-29_factbook.json",
-		time.Now().Add(4*time.Second*86400),
+		time.Now(),
 	)
 	if err != nil {
 		panic(err)
