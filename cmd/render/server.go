@@ -93,7 +93,6 @@ func main() {
 	}
 	_ = config
 
-	// factbook, err := NewFactbook("http://archive.paultag.house/data/2018-01-29_factbook.json")
 	factbook, err := NewFactbook(
 		"/home/paultag/2018-01-29_factbook.json",
 		time.Now(),

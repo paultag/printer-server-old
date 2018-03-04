@@ -2,8 +2,11 @@ package factbook
 
 import (
 	"fmt"
+	"math/big"
 	"sort"
 	"time"
+
+	"crypto/sha256"
 )
 
 type Factbook struct {
@@ -19,7 +22,17 @@ func (f Factbook) CountryOfTheWeek(when time.Time) Country {
 	sort.Strings(keys)
 
 	_, week := when.ISOWeek()
-	return f.Countries[keys[week%len(keys)]]
+
+	hash := sha256.New()
+	/* max 52 iso weeks */
+	hash.Write([]byte{byte(week)})
+	data := hash.Sum(nil)
+	num := big.NewInt(0).Mod(
+		big.NewInt(0).SetBytes(data),
+		big.NewInt(int64(len(keys))),
+	).Int64()
+
+	return f.Countries[keys[num]]
 }
 
 type Country struct {
