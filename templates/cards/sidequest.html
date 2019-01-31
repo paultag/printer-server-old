@@ -1,0 +1,15 @@
+{{define "sidequest"}}
+            <div class="cd-card">
+                <h1>ToDo</h1>
+                <table>
+{{ range .}}
+                    <tr class="entry sidequest-task">
+                        <td>{{.Title}}</td>
+                    </tr>
+{{end}}
+                    <tr class="entry sidequest-task"><td></td></tr>
+                    <tr class="entry sidequest-task"><td></td></tr>
+                    <tr class="entry sidequest-task"><td></td></tr>
+                </table>
+            </div>
+{{end}}

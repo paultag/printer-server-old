@@ -71,6 +71,10 @@ type Config struct {
 	CalendarURL      string
 	CalendarUsername string
 	CalendarPassword string
+
+	SidequestAPIBase     string
+	SidequestCertificate string
+	SidequestKey         string
 }
 
 func loadConfig(path string) (*Config, error) {
@@ -103,6 +107,16 @@ func main() {
 		config.Lon,
 	)
 	server.Add(forecast)
+
+	sidequest, err := NewSidequest(
+		config.SidequestAPIBase,
+		config.SidequestCertificate,
+		config.SidequestKey,
+	)
+	if err != nil {
+		panic(err)
+	}
+	server.Add(sidequest)
 
 	wmata, _ := NewWMATA(
 		config.WMATAAPIKey,

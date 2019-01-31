@@ -38,6 +38,10 @@ html {
     padding: 0px;
 }
 
+tr.sidequest-task > td::before {
+    content: "☐";
+}
+
 table {
     border-collapse: collapse;
 }
