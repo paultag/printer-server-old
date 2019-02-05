@@ -16,7 +16,7 @@ func (s Sidequest) Config() CardConfig {
 
 func (s Sidequest) Query() (interface{}, error) {
 	tasks, err := s.Client.GetTasks(map[string][]string{
-		"state": []string{"overdue"},
+		"state": []string{"nearlydue"},
 	})
 	if err != nil {
 		return nil, err
